@@ -8,12 +8,16 @@ import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemoryMemberRepository memoryMemberRepository) {
+        this.memberRepository = memoryMemberRepository;
+    }
 
     /*
         회원가입
     */
-    private Long join(Member member) {
+    public Long join(Member member) {
         validateDuplicateMember(member);
 
         // 그냥 꺼내고 싶을 때
@@ -27,6 +31,7 @@ public class MemberService {
         */
 
         memberRepository.save(member);
+
         return member.getId();
     }
 
