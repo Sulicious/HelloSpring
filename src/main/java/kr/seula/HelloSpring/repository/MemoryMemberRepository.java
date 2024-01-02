@@ -1,9 +1,11 @@
 package kr.seula.HelloSpring.repository;
 
 import kr.seula.HelloSpring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     // Memory MAP

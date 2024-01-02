@@ -3,14 +3,25 @@ package kr.seula.HelloSpring.service;
 import kr.seula.HelloSpring.domain.Member;
 import kr.seula.HelloSpring.repository.MemberRepository;
 import kr.seula.HelloSpring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemoryMemberRepository memoryMemberRepository) {
+        /*
+            DI : Dependency Injection ( 의존성 주입 )
+
+            MemberService 클래스에서 직접 new 연산자를 통해
+            객체를 생성하는 것이 아닌 외부에서 객체를
+            넣어주는 방식을 DI라고 한다.
+        */
         this.memberRepository = memoryMemberRepository;
     }
 
