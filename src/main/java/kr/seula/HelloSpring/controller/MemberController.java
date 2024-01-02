@@ -1,5 +1,6 @@
 package kr.seula.HelloSpring.controller;
 
+import kr.seula.HelloSpring.domain.Member;
 import kr.seula.HelloSpring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,16 @@ import org.springframework.stereotype.Controller;
 
     따라서 @Component를 붙이면 자동으로
     스프링 빈으로 등록된다.
+
+    실무에서는 컴포넌트 스캔 방법을 사용함.
+
+    상황에 따라 구현 클래스가 바뀌어야 할 땐
+    자바 코드로 빈을 등록하는 방법을 사용함
+    ( 기본 MemberService 클래스의 코드를
+    일절 손대지 않고 구현체 바꿀 수 있음 )
 */
+
+// 컴포넌트 스캔으로 빈 등록
 @Controller
 public class MemberController {
     // MemberController가 MemberService를 의존
@@ -27,11 +37,24 @@ public class MemberController {
         회원 가입, 멤버 조회를 할 수 있어야 한다.
     */
 
-    private final MemberService memberService;
+    private MemberService memberService;
+
+    // 의존 관계 주입 (Setter 주입)
+    // @Autowired
+    // public void setMemberService(MemberService memberService) {
+    //     this.memberService = memberService;
+    // }
+    // 단점 : 메서드를 퍼블릭으로 노출해야됨
+    // ( 호출 되지 않을 메소드가 호출 될 수 있음 )
+
+
+    // 의존 관계 주입 (필드 주입)
+    // @Autowired final MemberService memberService;
+    // 단점 : 딱히 바꿀 방법이 없음
 
     // 의존 관계 주입 (생성자 주입)
-    @Autowired
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
-    }
+     @Autowired
+     public MemberController(MemberService memberService) {
+         this.memberService = memberService;
+     }
 }
