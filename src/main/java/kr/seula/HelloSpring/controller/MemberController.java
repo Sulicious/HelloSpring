@@ -4,6 +4,8 @@ import kr.seula.HelloSpring.domain.Member;
 import kr.seula.HelloSpring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /*
     @Controller
@@ -53,8 +55,33 @@ public class MemberController {
     // 단점 : 딱히 바꿀 방법이 없음
 
     // 의존 관계 주입 (생성자 주입)
-     @Autowired
-     public MemberController(MemberService memberService) {
+    @Autowired
+    public MemberController(MemberService memberService) {
          this.memberService = memberService;
-     }
+    }
+
+    @GetMapping("/members/new")
+    public String createForm() {
+        return"members/createMemberForm";
+    }
+
+    @PostMapping("/members/new")
+    // MemberForm을 페이로드의 타입으로 설정
+    public String create(MemberForm form) {
+        // Member 도메인을 사용
+        // Domain -> 레포에 저장하기 위한 타입
+        Member member = new Member();
+        member.setName(form.getName());
+
+        // System.out.println("member = " + member.getName());
+
+        // 멤버 레포지토리에 저장
+        memberService.join(member);
+
+        /*
+            redirect 프로토콜을 사용하는데
+            스프링에서 HTTP 리디렉션 응답을 함
+         */
+        return "redirect:/";
+    }
 }
