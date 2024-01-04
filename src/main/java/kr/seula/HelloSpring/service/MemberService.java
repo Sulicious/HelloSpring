@@ -2,9 +2,7 @@ package kr.seula.HelloSpring.service;
 
 import kr.seula.HelloSpring.domain.Member;
 import kr.seula.HelloSpring.repository.MemberRepository;
-import kr.seula.HelloSpring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +11,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     @Autowired
-    public MemberService(MemoryMemberRepository memoryMemberRepository) {
+    public MemberService(MemberRepository memoryMemberRepository) {
         /*
             DI : Dependency Injection ( 의존성 주입 )
 
