@@ -1,13 +1,11 @@
 package kr.seula.HelloSpring.service;
 
 import kr.seula.HelloSpring.domain.Member;
+import kr.seula.HelloSpring.repository.MemberRepository;
 import kr.seula.HelloSpring.repository.MemoryMemberRepository;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,7 +23,7 @@ class MemberServiceTest {
     */
 
     MemberService memberService;
-    MemoryMemberRepository memoryMemberRepository;
+    MemberRepository memoryMemberRepository;
 
     @BeforeEach
     void beforeEach() {
