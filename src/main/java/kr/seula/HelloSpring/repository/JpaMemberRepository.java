@@ -9,7 +9,7 @@ import java.util.Optional;
 public class JpaMemberRepository implements MemberRepository {
 
     /*
-        스프링 부트의 JPA 라이브러리를
+        스프링 부트의 JPA 라이브러리를ㄴ
         의존성으로 사용하면
         스프링이 자동으로 EntityManager를
         빈으로 만들어준다.
