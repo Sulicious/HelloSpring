@@ -1,6 +1,7 @@
 package kr.seula.HelloSpring;
 
 import kr.seula.HelloSpring.repository.JdbcMemberRepository;
+import kr.seula.HelloSpring.repository.JdbcTemplateMemberRepository;
 import kr.seula.HelloSpring.repository.MemberRepository;
 import kr.seula.HelloSpring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
-import javax.xml.crypto.Data;
 
 // 자바 코드로 빈 등록
 /*
@@ -32,6 +32,6 @@ public class SpringConfig {
 
     @Bean
     public MemberRepository memberRepository() {
-        return new JdbcMemberRepository(dataSource);
+        return new JdbcTemplateMemberRepository(dataSource);
     }
 }
