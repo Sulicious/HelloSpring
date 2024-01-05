@@ -2,8 +2,6 @@ package kr.seula.HelloSpring.repository;
 
 import kr.seula.HelloSpring.domain.Member;
 
-import kr.seula.HelloSpring.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import javax.sql.DataSource;
 import java.sql.*;

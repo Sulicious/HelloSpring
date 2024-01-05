@@ -3,10 +3,19 @@ package kr.seula.HelloSpring.service;
 import kr.seula.HelloSpring.domain.Member;
 import kr.seula.HelloSpring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+/*
+    JPA를 쓸 때는
+    모든 데이터 변경이
+    트랜잭션 안에서 실행이
+    되어야 하기 때문에
+    @Transactional을 사용해야함.
+*/
+@Transactional
 public class MemberService {
     private final MemberRepository memberRepository;
 

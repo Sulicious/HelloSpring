@@ -22,7 +22,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	// h2 데이터베이스 관련 의존성
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	// implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JDBC + JPA + Spring Data JPA
 	runtimeOnly 'com.h2database:h2'
 }
 
