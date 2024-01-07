@@ -35,21 +35,41 @@ public class MemberService {
         회원가입
     */
     public Long join(Member member) {
-        validateDuplicateMember(member);
 
-        // 그냥 꺼내고 싶을 때
-        // result.get();
-
-        // Optional 안에 객체가 있을 때 꺼내기
         /*
-            result.ifPresent(m -> {
-                throw new IllegalStateException("이미 존재하는 회원입니다.");
-            })
+            AOP가 필요한 상황
+            모든 메서드의 실행 시간을 알고 싶을 때
+
+            공통 관심 사항 (보통 로직) 과
+            핵심 관심 사항 (중요 비즈니스 로직)
+            으로 구별할 수 있다
         */
 
-        memberRepository.save(member);
+        long start = System.currentTimeMillis();
 
-        return member.getId();
+        try {
+
+            validateDuplicateMember(member);
+
+            // 그냥 꺼내고 싶을 때
+            // result.get();
+
+            // Optional 안에 객체가 있을 때 꺼내기
+            /*
+                result.ifPresent(m -> {
+                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                })
+            */
+
+            memberRepository.save(member);
+
+            return member.getId();
+
+        } finally {
+            long finish = System.currentTimeMillis();
+            long result = finish - start;
+            System.out.println("Join 메서드 ms = " + result + "ms");
+        }
     }
 
     /*
@@ -66,7 +86,16 @@ public class MemberService {
         전체 회원 조회
     */
     public List<Member> findMembers() {
-        return memberRepository.findAll();
+        long start = System.currentTimeMillis();
+
+        try {
+            return memberRepository.findAll();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long result = finish - start;
+
+            System.out.println("findMembers 메서드 ms = " + result + "ms");
+        }
     }
 
     /*
