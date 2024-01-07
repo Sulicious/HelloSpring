@@ -42,7 +42,7 @@ public class MemberController {
         회원 가입, 멤버 조회를 할 수 있어야 한다.
     */
 
-    private MemberService memberService;
+    private final MemberService memberService;
 
     // 의존 관계 주입 (Setter 주입)
     // @Autowired

@@ -1,6 +1,7 @@
 package kr.seula.HelloSpring;
 
 import jakarta.persistence.EntityManager;
+import kr.seula.HelloSpring.aop.TimeTraceAop;
 import kr.seula.HelloSpring.domain.Member;
 import kr.seula.HelloSpring.repository.JpaMemberRepository;
 import kr.seula.HelloSpring.repository.MemberRepository;
@@ -35,6 +36,14 @@ public class SpringConfig {
         @Bean
         public MemberRepository memberRepository() {
             return new JpaMemberRepository(em);
+        }
+    */
+
+    // Component 스캔 써도 됨
+    /*
+        @Bean
+        public TimeTraceAop timeTraceAop() {
+            return new TimeTraceAop();
         }
     */
 }

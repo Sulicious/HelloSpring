@@ -45,31 +45,20 @@ public class MemberService {
             으로 구별할 수 있다
         */
 
-        long start = System.currentTimeMillis();
+        validateDuplicateMember(member);
 
-        try {
+        // 그냥 꺼내고 싶을 때
+        // result.get();
+        // Optional 안에 객체가 있을 때 꺼내기
+        /*
+            result.ifPresent(m -> {
+           throw new IllegalStateException("이미 존재하는 회원입니다.");
+            })
+        */
 
-            validateDuplicateMember(member);
+        memberRepository.save(member);
 
-            // 그냥 꺼내고 싶을 때
-            // result.get();
-
-            // Optional 안에 객체가 있을 때 꺼내기
-            /*
-                result.ifPresent(m -> {
-                    throw new IllegalStateException("이미 존재하는 회원입니다.");
-                })
-            */
-
-            memberRepository.save(member);
-
-            return member.getId();
-
-        } finally {
-            long finish = System.currentTimeMillis();
-            long result = finish - start;
-            System.out.println("Join 메서드 ms = " + result + "ms");
-        }
+        return member.getId();
     }
 
     /*
@@ -86,16 +75,7 @@ public class MemberService {
         전체 회원 조회
     */
     public List<Member> findMembers() {
-        long start = System.currentTimeMillis();
-
-        try {
             return memberRepository.findAll();
-        } finally {
-            long finish = System.currentTimeMillis();
-            long result = finish - start;
-
-            System.out.println("findMembers 메서드 ms = " + result + "ms");
-        }
     }
 
     /*
